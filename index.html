@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review the tone and clarity of a social post before publishing.">
+    <title>SentimentIQ | Social Tone Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page-shell">
+        <header class="topbar"><a class="brand" href="#top" aria-label="SentimentIQ home"><span class="brand-mark">S</span><span><strong>SentimentIQ</strong><small>Social tone studio</small></span></a>
+            <div class="status"><span class="status-dot"></span>Local analysis ready</div>
+        </header>
+        <main id="top">
+            <section class="hero">
+                <div>
+                    <p class="eyebrow">WRITE WITH INTENTION</p>
+                    <h1>Make every message<br><em>land better.</em></h1>
+                    <p class="hero-copy">A quick, private read on emotional tone, clarity, and how your words may be received.</p>
+                </div>
+                <div class="hero-note"><span>01</span>
+                    <p>No API key.<br>Nothing leaves this browser.</p>
+                </div>
+            </section>
+            <section class="workspace" aria-label="Message analyzer">
+                <div class="composer panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">YOUR DRAFT</p>
+                            <h2>What do you want to say?</h2>
+                        </div><span id="charCount">0 / 500</span></div><label class="visually-hidden" for="inputText">Draft message</label><textarea id="inputText" maxlength="500" placeholder="Paste a post, reply, or message here..."></textarea>
+                    <div class="composer-footer"><span class="hint">Press <kbd>Enter</kbd> to analyze <i>or</i> <kbd>Shift + Enter</kbd> for a new line</span><button id="clearButton" class="text-button" type="button">Clear</button></div>
+                    <div class="quick-picks"><span>Try a sample</span><button type="button" class="sample-chip" data-sample="Thanks for your thoughtful help today. I really appreciate the extra effort!">Warm</button><button type="button" class="sample-chip" data-sample="I am frustrated that this keeps happening. We need a better solution.">Frustrated</button>
+                        <button type="button" class="sample-chip" data-sample="Could we discuss the timeline and agree on the next steps together?">Constructive</button>
+                    </div><button id="analyzeButton" class="primary-button" type="button"><span class="button-label">Analyze my message</span><span class="button-arrow">&#8594;</span><span id="spinner" class="spinner hidden"></span></button></div>
+                <aside class="side-column">
+                    <div class="panel guide-panel">
+                        <p class="eyebrow">THE READOUT</p>
+                        <h2>Clear, useful signals.</h2>
+                        <p>See the dominant tone, emotional intensity, and a practical suggestion before you hit publish.</p>
+                        <div class="signal-list">
+                            <div><span class="signal-icon coral">&#9670;</span>
+                                <p><strong>Tone</strong><small>How it sounds</small></p>
+                            </div>
+                            <div><span class="signal-icon teal">&#10003;</span>
+                                <p><strong>Safety</strong><small>How it may land</small></p>
+                            </div>
+                            <div><span class="signal-icon yellow">&#9733;</span>
+                                <p><strong>Guidance</strong><small>What to try next</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel history-panel">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow">RECENT READS</p>
+                                <h2>Your history</h2>
+                            </div><button id="clearHistory" class="text-button" type="button">Clear all</button></div>
+                        <div id="historyList" class="history-list">
+                            <p class="empty-history">Your latest analyses will appear here.</p>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+            <section id="result" class="result panel hidden" aria-live="polite" aria-labelledby="resultHeading">
+                <div class="result-header">
+                    <div>
+                        <p class="eyebrow">ANALYSIS COMPLETE</p>
+                        <h2 id="resultHeading">Your message at a glance</h2>
+                    </div><button id="copyButton" class="outline-button" type="button">Copy insight</button></div>
+                <div class="metrics">
+                    <div class="metric metric-tone"><span class="metric-label">Dominant tone</span><strong id="sentimentLabel">Positive</strong><span id="sentimentIcon" class="metric-icon">&#9786;</span></div>
+                    <div class="metric"><span class="metric-label">Tone score</span><strong id="scoreValue">+0.80</strong>
+                        <div class="meter"><span id="scoreMeter"></span></div><span id="scoreCaption" class="metric-caption">Balanced energy</span></div>
+                    <div class="metric"><span class="metric-label">Publish check</span><strong id="safetyBadge">Ready to share</strong><span id="safetyCaption" class="metric-caption">Clear and considerate</span></div>
+                </div>
+                <div class="insight-grid">
+                    <div class="insight">
+                        <p class="eyebrow">QUICK READ</p>
+                        <p id="scoreLabel"></p>
+                    </div>
+                    <div class="insight">
+                        <p class="eyebrow">NEXT BEST MOVE</p>
+                        <p id="explanationText"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer><span>SentimentIQ</span><span>Private by design · Built for better conversations</span></footer>
+    </div>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
